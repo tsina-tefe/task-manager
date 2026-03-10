@@ -27,7 +27,7 @@ const loginController = (req, res) => {
     }
 
     if (results.length === 0) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     const user = results[0];
@@ -35,7 +35,7 @@ const loginController = (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(401).json({ message: "Invalid credentials" });
     }
 
     const payload = { id: user.id, name: user.name };

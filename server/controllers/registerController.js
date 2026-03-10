@@ -1,9 +1,10 @@
-import express from "express";
 import bcrypt from "bcrypt";
 import db from "../db.js";
 
 const registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const name = req.body.name.trim();
+  const email = req.body.email.trim();
+  const password = req.body.password.trim();
 
   if (!name || !email || !password) {
     return res.status(400).json({ message: "Please fill all fields" });

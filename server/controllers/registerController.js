@@ -4,7 +4,7 @@ import db from "../db.js";
 
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
-  console.log("Post request");
+
   if (!name || !email || !password) {
     return res.status(400).json({ message: "Please fill all fields" });
   }

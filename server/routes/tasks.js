@@ -1,14 +1,14 @@
 import express from "express";
 import authenticateToken from "../middleware/authenticateToken.js";
-import { addTask } from "../controllers/tasksController.js";
+import { addTask, getTasks } from "../controllers/tasksController.js";
 
 const router = express.Router();
 
 // add new task
 router.post("/", authenticateToken, addTask);
 
-// // get tasks
-// router.get("/:userId", getTasks);
+// get tasks
+router.get("/", authenticateToken, getTasks);
 
 // // update task
 // router.put("/:id", updateTask);

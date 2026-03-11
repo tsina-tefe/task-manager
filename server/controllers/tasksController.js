@@ -46,3 +46,34 @@ export const getTasks = (req, res) => {
     res.status(200).json({ results });
   });
 };
+
+// update tasks by task id
+export const updateTaskStatus = (req, res) => {
+  const id = parseInt(req.body.id);
+  const userId = req.user.id;
+
+  if (!id || isNaN(id)) {
+    return res.status(400).json({ message: "Please include the task id" });
+  }
+
+  const queryUpdate = `
+    UPDATE tasks
+    SET status = IF(status = 'pending', 'completed', 'pending')
+    WHERE id = ? AND user_id = ?
+  `;
+
+  db.query(queryUpdate, [id, userId], (error, result) => {
+    if (error) {
+      console.log("Error updating: ", error);
+      return res
+        .status(500)
+        .json({ message: "Something went wrong, try again later" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(400).json({ message: "Task does not exist" });
+    }
+
+    res.status(200).json({ message: "Task updated successfully" });
+  });
+};

@@ -151,3 +151,14 @@ body {
 .auth-footer a:hover {
   text-decoration: underline;
 }
+
+.error {
+  text-align: center;
+  color: red;
+}
+
+.success {
+  text-align: center;
+  color: green;
+  margin-bottom: 5px;
+}

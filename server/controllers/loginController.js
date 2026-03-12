@@ -8,7 +8,7 @@ dotenv.config();
 const loginController = (req, res) => {
   const email = req.body.email.trim();
   const password = req.body.password.trim();
-
+  console.log("login request");
   if (!email || !password) {
     return res
       .status(400)
@@ -44,7 +44,7 @@ const loginController = (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ token });
+    res.status(200).json({ token, message: "Login Successful" });
   });
 };
 

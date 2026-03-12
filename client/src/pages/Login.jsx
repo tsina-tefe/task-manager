@@ -2,6 +2,8 @@ import { useState } from "react";
 import Email from "../components/Email";
 import Password from "../components/Password";
 import login from "../api/loginService";
+import { Link } from "react-router-dom";
+import register from "../api/registerService";
 
 const Login = () => {
   const [formData, setFromData] = useState({
@@ -57,7 +59,7 @@ const Login = () => {
           </button>
         </form>
         <div className="auth-footer">
-          Don't have an account? <a href="#">Create Account</a>
+          Don't have an account? <Link to={"/register"}>Create Account</Link>
         </div>
       </div>
     </div>

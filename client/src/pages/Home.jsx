@@ -1,4 +1,5 @@
 import "../home.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -10,12 +11,12 @@ const Home = () => {
             <span>TaskFlow</span>
           </div>
           <div className="nav-auth">
-            <a href="#" className="btn-login">
+            <Link to={"/login"} className="btn-login">
               Log in
-            </a>
-            <a href="#" className="btn-signup">
+            </Link>
+            <Link to={"/register"} className="btn-signup">
               Sign Up
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
@@ -28,7 +29,9 @@ const Home = () => {
             Stay organized, reduce stress, and boost your productivity with our
             intuitive task management tools.
           </p>
-          <button className="btn-hero">Get Started</button>
+          <Link to={"/register"}>
+            <button className="btn-hero">Get Started</button>
+          </Link>
         </div>
 
         <div className="hero-visual">

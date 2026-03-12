@@ -3,6 +3,7 @@ import Name from "../components/Name";
 import Email from "../components/Email";
 import Password from "../components/Password";
 import register from "../api/registerService";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFromData] = useState({
@@ -60,7 +61,7 @@ const Register = () => {
           </button>
         </form>
         <div className="auth-footer">
-          Already have an account? <a href="#">Sign In</a>
+          Already have an account? <Link to={"/login"}>Sign In</Link>
         </div>
       </div>
     </div>

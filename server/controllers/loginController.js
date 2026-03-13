@@ -8,7 +8,7 @@ dotenv.config();
 const loginController = (req, res) => {
   const email = req.body.email.trim();
   const password = req.body.password.trim();
-  console.log("login request");
+
   if (!email || !password) {
     return res
       .status(400)
@@ -41,10 +41,14 @@ const loginController = (req, res) => {
 
     const payload = { id: user.id, name: user.name };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "1d",
     });
-
-    res.status(200).json({ token, message: "Login Successful" });
+    //send back the user too
+    res.status(200).json({
+      token,
+      message: "Login Successful",
+      user: { id: user.id, name: user.name, email: user.email },
+    });
   });
 };
 

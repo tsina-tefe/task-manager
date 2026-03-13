@@ -124,6 +124,7 @@ body {
   width: fit-content;
   box-shadow: 0 10px 20px rgba(59, 45, 250, 0.2);
   transition: transform 0.2s;
+  text-decoration: none;
 }
 
 .btn-hero:hover {

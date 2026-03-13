@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Email from "../components/Email";
 import Password from "../components/Password";
-import login from "../api/loginService";
+import handleLogin from "../api/loginService";
 import { Link } from "react-router-dom";
-import register from "../api/registerService";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
   const [formData, setFromData] = useState({
@@ -12,18 +13,22 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setFromData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = async () => {
+  const handleSubmit = async () => {
     try {
-      const res = await login(formData);
+      const res = await handleLogin(formData);
       setMessage(res.message);
       setTimeout(() => {
         setMessage("");
       }, 5000);
+      login(res.token);
+      navigate("/dashboard");
     } catch (error) {
       setError(error.response.data.message);
     }
@@ -52,7 +57,7 @@ const Login = () => {
               console.log("submitted");
               e.preventDefault();
               setError("");
-              handleLogin(); //Login
+              handleSubmit(); //Login
             }}
           >
             Sign In <i className="fa-solid fa-arrow-right"></i>

@@ -1,4 +1,4 @@
-import "../home.css";
+import "../styles/home.css";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -29,8 +29,8 @@ const Home = () => {
             Stay organized, reduce stress, and boost your productivity with our
             intuitive task management tools.
           </p>
-          <Link to={"/register"}>
-            <button className="btn-hero">Get Started</button>
+          <Link to={"/register"} className="btn-hero">
+            Get Started
           </Link>
         </div>
 

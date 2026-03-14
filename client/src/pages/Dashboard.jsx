@@ -10,7 +10,7 @@ import {
   deleteTask,
 } from "../api/tasksService";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
@@ -79,6 +79,8 @@ const Dashboard = () => {
     }
   };
 
+  const pages = ["all", "health", "work", "family", "personal"];
+
   return (
     <div className="dashboard-wrapper">
       <Header />
@@ -94,21 +96,23 @@ const Dashboard = () => {
         error={error}
       />
       <nav className="category-tabs">
-        <span className="tab active">All</span>
-        <span className="tab">Health</span>
-        <span className="tab">Work</span>
-        <span className="tab">Family</span>
-        <span className="tab">Personal</span>
+        {pages.map((page) => (
+          <NavLink
+            className={({ isActive }) => {
+              return isActive ? "tab active capitalize" : "tab capitalize";
+            }}
+            key={page}
+            to={`/dashboard/${page}`}
+          >
+            {page}
+          </NavLink>
+        ))}
       </nav>
       <div className="task-list-header">
         <h3>Active Tasks</h3>
         <span className="task-count">3 Tasks</span>
       </div>
-      <TaskList
-        tasks={tasks}
-        handleUpdate={handleUpdate}
-        handleDelete={handleDelete}
-      />
+      <Outlet context={{ tasks, handleUpdate, handleDelete }} />
       <div className="watermark">
         <i className="fa-solid fa-circle-check"></i>
       </div>

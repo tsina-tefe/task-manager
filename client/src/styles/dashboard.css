@@ -140,6 +140,8 @@ body {
   padding-bottom: 10px;
   cursor: pointer;
   position: relative;
+  text-decoration: none;
+  margin-right: 10px;
 }
 
 .tab.active {
@@ -270,4 +272,8 @@ body {
 
 .success {
   color: green;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }

@@ -1,10 +1,10 @@
 import TaskItem from "./TaskItem";
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, handleUpdate }) => {
   return (
     <div className="task-list">
       {tasks.map((task) => (
-        <TaskItem task={task} key={task.id} />
+        <TaskItem task={task} key={task.id} handleUpdate={handleUpdate} />
       ))}
     </div>
   );

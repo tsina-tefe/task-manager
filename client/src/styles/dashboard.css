@@ -252,3 +252,11 @@ body {
   position: relative;
   z-index: 1;
 }
+
+.error {
+  color: #ef4444;
+}
+
+.success {
+  color: green;
+}

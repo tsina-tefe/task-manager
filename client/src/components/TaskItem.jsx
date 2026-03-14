@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TaskItem = ({ task, handleUpdate }) => {
+const TaskItem = ({ task, handleUpdate, handleDelete }) => {
   const [isCompleted, setIsCompleted] = useState(task.status === "completed");
 
   return (
@@ -18,12 +18,13 @@ const TaskItem = ({ task, handleUpdate }) => {
       ></i>
       <div className="task-info">
         <h4 className="task-desc">{task.description}</h4>
-        <p>{task.title} • 08:00 AM</p>
+        <p>• {task.title}</p>
       </div>
       <i
         className="fa-regular fa-trash-can delete-icon"
         onClick={() => {
           console.log("delete clicked");
+          handleDelete(task.id);
         }}
       ></i>
     </div>

@@ -29,3 +29,12 @@ export const updateStatus = async (id) => {
     throw error;
   }
 };
+
+export const deleteTask = async (id) => {
+  try {
+    const response = await api.delete(`/tasks/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

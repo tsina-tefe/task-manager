@@ -3,7 +3,12 @@ import Header from "../components/Header";
 import TaskInput from "../components/TaskInput";
 import TaskList from "../components/TaskList";
 import { useContext, useEffect, useState } from "react";
-import { getTasks, addTask, updateStatus } from "../api/tasksService";
+import {
+  getTasks,
+  addTask,
+  updateStatus,
+  deleteTask,
+} from "../api/tasksService";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +30,6 @@ const Dashboard = () => {
       }
       const data = await getTasks();
       setTasks(data.results);
-      console.log(data.results);
     } catch (error) {
       setError(error.message); // show user error message
       setTimeout(() => {
@@ -47,7 +51,6 @@ const Dashboard = () => {
   const handleAddTask = async () => {
     try {
       const response = await addTask(newTask);
-      console.log(response);
       setMessage(response.message);
       setTimeout(() => {
         setMessage("");
@@ -62,6 +65,15 @@ const Dashboard = () => {
     try {
       const response = await updateStatus(id);
       console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await deleteTask(id);
+      loadTasks();
     } catch (error) {
       console.log(error);
     }
@@ -92,7 +104,11 @@ const Dashboard = () => {
         <h3>Active Tasks</h3>
         <span className="task-count">3 Tasks</span>
       </div>
-      <TaskList tasks={tasks} handleUpdate={handleUpdate} />
+      <TaskList
+        tasks={tasks}
+        handleUpdate={handleUpdate}
+        handleDelete={handleDelete}
+      />
       <div className="watermark">
         <i className="fa-solid fa-circle-check"></i>
       </div>

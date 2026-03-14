@@ -99,7 +99,7 @@ export const deleteTask = (req, res) => {
         .status(500)
         .json({ message: "Something went wrong, try again later" });
     }
-    console.log(result.affectedRows);
+
     if (result.affectedRows === 0) {
       return res.status(400).json({ message: "Task does not exist" });
     }

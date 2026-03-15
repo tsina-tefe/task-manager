@@ -2,12 +2,10 @@ import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { LogOut, ChevronDown } from "lucide-react";
 import "../styles/userMenu.css";
-import { useNavigate } from "react-router-dom";
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -26,7 +24,6 @@ const UserMenu = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/");
   };
 
   return (

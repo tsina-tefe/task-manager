@@ -22,21 +22,23 @@ const Dashboard = () => {
   const { token, user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    loadTasks();
+  }, [token, navigate]);
+
   const loadTasks = async () => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
     try {
-      if (!token) {
-        navigate("/login");
-      }
       const data = await getTasks();
       setTasks(data.results);
     } catch (error) {
       showError("Something went wrong, try again");
     }
   };
-
-  useEffect(() => {
-    loadTasks();
-  }, [token, navigate]);
 
   const handleChange = (e) => {
     setNewTask({ ...newTask, [e.target.name]: e.target.value });

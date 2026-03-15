@@ -34,9 +34,11 @@ const Register = () => {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <div className="logo-icon">
-            <i className="fa-solid fa-circle-check"></i>
-          </div>
+          <Link to={"/"} className="logo">
+            <div className="logo-icon">
+              <i className="fa-solid fa-circle-check"></i>
+            </div>
+          </Link>
           <h1>Join TaskFlow</h1>
           <p>Start managing your projects today</p>
         </div>

@@ -30,7 +30,14 @@ const Login = () => {
       login(res.token, res.user);
       navigate("/dashboard");
     } catch (error) {
-      setError(error.response.data.message);
+      if (error.response) {
+        return setError(error.response.data.message);
+      }
+      setError("Something went wrong");
+      console.log(error);
+      setTimeout(() => {
+        setError("");
+      }, 5000);
     }
   };
 
@@ -38,9 +45,11 @@ const Login = () => {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <div className="logo-icon">
-            <i className="fa-solid fa-circle-check"></i>
-          </div>
+          <Link to={"/"} className="logo">
+            <div className="logo-icon">
+              <i className="fa-solid fa-circle-check"></i>
+            </div>
+          </Link>
           <h1>Wellcome to TaskFlow</h1>
           <p>Manage your projects efficiently</p>
         </div>

@@ -1,4 +1,6 @@
 import axios from "axios";
+import { isTokenExpired } from "../utils/checkToken";
+import { useNavigate } from "react-router-dom";
 
 const api = axios.create({
   baseURL: "http://localhost:3000/api",
@@ -7,6 +9,15 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
+
+    if (token && isTokenExpired(token)) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+
+      window.location.href = "/login";
+      return Promise.reject("Token expired");
+    }
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

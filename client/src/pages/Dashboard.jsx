@@ -21,6 +21,7 @@ const Dashboard = () => {
   const [error, setError] = useState("");
   const { token, user } = useContext(AuthContext);
   const navigate = useNavigate();
+
   const loadTasks = async () => {
     try {
       if (!token) {
@@ -29,7 +30,7 @@ const Dashboard = () => {
       const data = await getTasks();
       setTasks(data.results);
     } catch (error) {
-      setError(error.message);
+      setError("Something went wrong, try again");
       setTimeout(() => {
         setError("");
       }, 5000);
@@ -62,7 +63,6 @@ const Dashboard = () => {
   const handleUpdate = async (id) => {
     try {
       const response = await updateStatus(id);
-      console.log(response);
     } catch (error) {
       console.log(error);
     }

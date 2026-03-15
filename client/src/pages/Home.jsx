@@ -47,7 +47,7 @@ const Home = () => {
               <h3>Smart Categorization</h3>
               <p>
                 Automatically organize your tasks by project, priority, and
-                custom tags using our AI-driven engine.
+                catagories with distinict futures.
               </p>
             </div>
           </div>
@@ -64,7 +64,7 @@ const Home = () => {
             <p>The simple task management app.</p>
           </div>
           <div className="footer-right">
-            <p>&copy; 2024 TaskFlow Inc. All rights reserved.</p>
+            <p>&copy; 2026 TaskFlow Inc. All rights reserved.</p>
           </div>
         </div>
       </footer>

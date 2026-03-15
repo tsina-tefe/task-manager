@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 dotenv.config();
 
 const authenticateToken = (req, res, next) => {
-  const token = req.headers["authorization"].split(" ")[1];
+  const token = req.headers["authorization"]?.split(" ")[1];
 
   if (!token) {
     console.log("No token");

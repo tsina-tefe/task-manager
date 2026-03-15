@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import db from "../db.js";
+import validator from "validator";
 
 const registerUser = async (req, res) => {
   const name = req.body.name.trim();
@@ -8,6 +9,16 @@ const registerUser = async (req, res) => {
 
   if (!name || !email || !password) {
     return res.status(400).json({ message: "Please fill all fields" });
+  }
+
+  if (!validator.isEmail(email)) {
+    return res.status(400).json({ message: "Invalid Email" });
+  }
+
+  if (password.length <= 8) {
+    return res
+      .status(400)
+      .json({ message: "Password should be greater than 8 characters." });
   }
 
   const hashedPass = await bcrypt.hash(password, 10);

@@ -30,10 +30,7 @@ const Dashboard = () => {
       const data = await getTasks();
       setTasks(data.results);
     } catch (error) {
-      setError("Something went wrong, try again");
-      setTimeout(() => {
-        setError("");
-      }, 5000);
+      showError("Something went wrong, try again");
     }
   };
 
@@ -42,7 +39,6 @@ const Dashboard = () => {
   }, [token, navigate]);
 
   const handleChange = (e) => {
-    e.preventDefault();
     setNewTask({ ...newTask, [e.target.name]: e.target.value });
     setError("");
   };
@@ -55,16 +51,21 @@ const Dashboard = () => {
         setMessage("");
       }, 4000);
       loadTasks();
+      setNewTask({
+        title: "Work",
+        description: "",
+      });
     } catch (error) {
-      setError(error.message);
+      showError("Failed to add task, please try again.");
     }
   };
 
   const handleUpdate = async (id) => {
     try {
       const response = await updateStatus(id);
+      loadTasks();
     } catch (error) {
-      console.log(error);
+      showError("Failed to update task status, please try again.");
     }
   };
 
@@ -73,8 +74,15 @@ const Dashboard = () => {
       const response = await deleteTask(id);
       loadTasks();
     } catch (error) {
-      console.log(error);
+      showError("Could't delete a task, please try again.");
     }
+  };
+
+  const showError = (msg) => {
+    setError(msg);
+    setTimeout(() => {
+      setError("");
+    }, 5000);
   };
 
   const pages = ["all", "health", "work", "family", "personal"];
@@ -108,7 +116,7 @@ const Dashboard = () => {
       </nav>
       <div className="task-list-header">
         <h3>Active Tasks</h3>
-        <span className="task-count">3 Tasks</span>
+        <span className="task-count">{tasks.length} Tasks</span>
       </div>
       <Outlet context={{ tasks, handleUpdate, handleDelete }} />
       <div className="watermark">

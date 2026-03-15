@@ -4,29 +4,59 @@ import Email from "../components/Email";
 import Password from "../components/Password";
 import register from "../api/registerService";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import validator from "validator";
 
 const Register = () => {
-  const [formData, setFromData] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
   });
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFromData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleRegister = async () => {
+    if (!formData.name || !formData.email || !formData.password) {
+      setError("Please fill in all the fields.");
+      return;
+    }
+
+    if (!validator.isEmail(formData.email)) {
+      setError("Invalid Email");
+      return;
+    }
+
+    if (formData.password.length <= 8) {
+      setError("Password should be greater than 8 characters.");
+      return;
+    }
+
+    setLoading(true);
     try {
       const res = await register(formData);
       setMessage(res.message);
       setTimeout(() => {
         setMessage("");
-      }, 5000);
+        navigate("/login");
+      }, 3000);
     } catch (error) {
-      setError(error.response.data.message);
+      if (error.response && error.response.data) {
+        setError(error.response.data.message);
+      } else {
+        setError("Something went wrong");
+      }
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -58,7 +88,8 @@ const Register = () => {
               handleRegister();
             }}
           >
-            Create Account <i className="fa-solid fa-arrow-right"></i>
+            {loading ? "Registering " : "Create Account "}{" "}
+            <i className="fa-solid fa-arrow-right"></i>
           </button>
         </form>
         <div className="auth-footer">

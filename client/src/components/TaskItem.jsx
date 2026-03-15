@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const TaskItem = ({ task, handleUpdate, handleDelete }) => {
-  const [isCompleted, setIsCompleted] = useState(task.status === "completed");
+  const isCompleted = task.status === "completed";
 
   return (
     <div className={isCompleted ? "task-item task-completed" : "task-item"}>
@@ -13,7 +13,6 @@ const TaskItem = ({ task, handleUpdate, handleDelete }) => {
         }
         onClick={() => {
           handleUpdate(task.id);
-          setIsCompleted(!isCompleted);
         }}
       ></i>
       <div className="task-info">

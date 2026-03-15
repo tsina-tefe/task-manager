@@ -7,20 +7,22 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const [formData, setFromData] = useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
   const handleChange = (e) => {
-    setFromData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     try {
       const res = await handleLogin(formData);
       setMessage(res.message);
@@ -30,14 +32,20 @@ const Login = () => {
       login(res.token, res.user);
       navigate("/dashboard");
     } catch (error) {
-      if (error.response) {
-        return setError(error.response.data.message);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setError(error.response.data.message);
+      } else {
+        setError("Something went wrong");
       }
-      setError("Something went wrong");
-      console.log(error);
       setTimeout(() => {
         setError("");
       }, 5000);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,7 +76,8 @@ const Login = () => {
               handleSubmit(); //Login
             }}
           >
-            Sign In <i className="fa-solid fa-arrow-right"></i>
+            {loading ? "Signing In " : "Sign In "}
+            <i className="fa-solid fa-arrow-right"></i>
           </button>
         </form>
         <div className="auth-footer">

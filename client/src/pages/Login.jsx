@@ -27,7 +27,7 @@ const Login = () => {
       setTimeout(() => {
         setMessage("");
       }, 5000);
-      login(res.token);
+      login(res.token, res.user);
       navigate("/dashboard");
     } catch (error) {
       setError(error.response.data.message);

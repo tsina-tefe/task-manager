@@ -11,7 +11,7 @@ const TaskInput = ({
       <input
         type="text"
         name="description"
-        value={newTask.description}
+        value={newTask.description || ""}
         placeholder="What needs to be done?"
         onChange={handleChange}
       />

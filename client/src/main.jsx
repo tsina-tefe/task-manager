@@ -7,7 +7,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import NotFound from "./pages/NotFound.jsx";
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -17,6 +16,7 @@ import AllTasks from "./components/AllTasks.jsx";
 import WorkTasks from "./components/WorkTasks.jsx";
 import FamilyTasks from "./components/FamilyTasks.jsx";
 import HealthTasks from "./components/HealthTasks.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 const router = createBrowserRouter([
   {

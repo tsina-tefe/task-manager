@@ -1,9 +1,9 @@
-import { Link } from "react";
+import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
     <>
-      <div>Page Not Found</div>
+      <h2>Page Not Found</h2>
       <Link to={"/"}>Back Home</Link>
     </>
   );

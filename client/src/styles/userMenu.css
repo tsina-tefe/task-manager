@@ -1,0 +1,116 @@
+.user-menu-container {
+  position: relative; /* Essential for the dropdown to align to this box */
+  display: inline-block;
+}
+
+/* Avatar Trigger */
+.avatar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50px;
+  transition: background 0.2s;
+}
+
+.avatar-wrapper:hover {
+  background: #f1f5f9;
+}
+
+.avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.arrow {
+  color: #64748b;
+  transition: transform 0.3s ease;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Card */
+.profile-dropdown {
+  position: absolute;
+  top: 55px; /* Adjust based on your header height */
+  right: 0;
+  width: 220px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f5f9;
+  z-index: 1000;
+  padding: 8px 0;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* User Info Section */
+.dropdown-header {
+  padding: 12px 20px;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.user-email {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 8px 0;
+}
+
+/* List Items */
+.dropdown-links {
+  list-style: none;
+}
+
+.dropdown-links li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dropdown-links li:hover {
+  background: #f8fafc;
+  color: #3b2dfa;
+}
+
+/* Logout item specifically */
+.dropdown-links li.logout-link {
+  color: #ef4444; /* Red color for logout */
+}
+
+.dropdown-links li.logout-link:hover {
+  background: #fef2f2;
+}

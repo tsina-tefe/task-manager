@@ -19,9 +19,8 @@ const Dashboard = () => {
   });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const { token } = useContext(AuthContext);
+  const { token, user } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const loadTasks = async () => {
     try {
       if (!token) {
@@ -84,7 +83,7 @@ const Dashboard = () => {
     <div className="dashboard-wrapper">
       <Header />
       <section className="welcome-section">
-        <p>Hello, James 👋</p>
+        <p>Hello, {user?.name || "James"} 👋</p>
         <h1>Manage your daily goals</h1>
       </section>
       <TaskInput

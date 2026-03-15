@@ -28,8 +28,6 @@ const TaskInput = ({
           className="btn-add"
           onClick={(e) => {
             e.preventDefault();
-            console.log("task sublmitted");
-            console.log(newTask);
             handleAddTask();
           }}
         >

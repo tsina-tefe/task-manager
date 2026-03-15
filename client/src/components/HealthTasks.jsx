@@ -6,7 +6,7 @@ const HealthTasks = () => {
   return (
     <>
       <TaskList
-        tasks={tasks}
+        tasks={tasks.filter((task) => task.title === "Health")}
         handleUpdate={handleUpdate}
         handleDelete={handleDelete}
       />

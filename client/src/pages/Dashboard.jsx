@@ -1,7 +1,6 @@
 import "../styles/dashboard.css";
 import Header from "../components/Header";
 import TaskInput from "../components/TaskInput";
-import TaskList from "../components/TaskList";
 import { useContext, useEffect, useState } from "react";
 import {
   getTasks,
@@ -31,7 +30,7 @@ const Dashboard = () => {
       const data = await getTasks();
       setTasks(data.results);
     } catch (error) {
-      setError(error.message); // show user error message
+      setError(error.message);
       setTimeout(() => {
         setError("");
       }, 5000);

@@ -54,7 +54,6 @@ const Login = () => {
             type="submit"
             className="btn-primary"
             onClick={(e) => {
-              console.log("submitted");
               e.preventDefault();
               setError("");
               handleSubmit(); //Login

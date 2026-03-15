@@ -1,8 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/index.css";
-import App from "./App.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Register from "./pages/Register.jsx";
@@ -34,23 +37,27 @@ const router = createBrowserRouter([
     element: <Dashboard />, //if no token, direct to login
     children: [
       {
-        path: "/dashboard/all",
+        index: true,
+        element: <Navigate to={"all"} replace />,
+      },
+      {
+        path: "all",
         element: <AllTasks />,
       },
       {
-        path: "/dashboard/personal",
+        path: "personal",
         element: <PersonalTasks />,
       },
       {
-        path: "/dashboard/work",
+        path: "work",
         element: <WorkTasks />,
       },
       {
-        path: "/dashboard/family",
+        path: "family",
         element: <FamilyTasks />,
       },
       {
-        path: "/dashboard/health",
+        path: "health",
         element: <HealthTasks />,
       },
     ],

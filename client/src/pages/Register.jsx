@@ -51,7 +51,6 @@ const Register = () => {
             type="submit"
             className="btn-primary"
             onClick={(e) => {
-              console.log("submitted");
               e.preventDefault();
               setError("");
               handleRegister();

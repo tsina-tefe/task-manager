@@ -23,7 +23,6 @@ const TaskItem = ({ task, handleUpdate, handleDelete }) => {
       <i
         className="fa-regular fa-trash-can delete-icon"
         onClick={() => {
-          console.log("delete clicked");
           handleDelete(task.id);
         }}
       ></i>

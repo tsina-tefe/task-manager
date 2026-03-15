@@ -16,7 +16,7 @@ router.post("/", authenticateToken, addTask);
 router.get("/", authenticateToken, getTasks);
 
 // update task
-router.put("/:id", authenticateToken, updateTaskStatus);
+router.patch("/:id", authenticateToken, updateTaskStatus);
 
 // delete task
 router.delete("/:id", authenticateToken, deleteTask);

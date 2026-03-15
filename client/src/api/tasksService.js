@@ -27,7 +27,7 @@ export const addTask = async (newTask) => {
 
 export const updateStatus = async (id) => {
   try {
-    const response = await api.put(`/tasks/${id}`);
+    const response = await api.patch(`/tasks/${id}`);
     return response.data;
   } catch (error) {
     throw handleError(error);

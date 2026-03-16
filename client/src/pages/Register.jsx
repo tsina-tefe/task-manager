@@ -6,6 +6,7 @@ import register from "../api/registerService";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import validator from "validator";
+import zxcvbn from "zxcvbn";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -35,6 +36,15 @@ const Register = () => {
 
     if (formData.password.length <= 8) {
       setError("Password should be greater than 8 characters.");
+      return;
+    }
+
+    //check password strength
+    const result = zxcvbn(formData.password);
+    if (result < 2) {
+      setError(
+        "Password is not strong, please include letters, numbers and characters.",
+      );
       return;
     }
 

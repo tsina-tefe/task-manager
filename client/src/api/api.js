@@ -3,7 +3,7 @@ import { isTokenExpired } from "../utils/checkToken";
 import { useNavigate } from "react-router-dom";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000/api",
 });
 
 api.interceptors.request.use(

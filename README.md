@@ -128,22 +128,21 @@ USE mytask_manager;
 -- Users table
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(100) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
+  name VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  password VARCHAR(255),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Tasks table
 CREATE TABLE tasks (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
-  title VARCHAR(50) NOT NULL,
-  description VARCHAR(255) NOT NULL,
-  status VARCHAR(20) DEFAULT 'pending',
+  title VARCHAR(255),
+  description TEXT,
+  status ENUM('pending','completed') DEFAULT 'pending',
+  user_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  INDEX (user_id)
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
 ```
 

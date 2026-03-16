@@ -6,7 +6,7 @@ import login from "./routes/login.js";
 import tasks from "./routes/tasks.js";
 
 dotenv.config();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 10000;
 const app = express();
 
 app.use(express.json());
@@ -29,6 +29,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Internal server error" });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log("Server is running on port ", PORT);
 });

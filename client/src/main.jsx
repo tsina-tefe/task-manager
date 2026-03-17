@@ -17,6 +17,7 @@ import WorkTasks from "./components/WorkTasks.jsx";
 import FamilyTasks from "./components/FamilyTasks.jsx";
 import HealthTasks from "./components/HealthTasks.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const router = createBrowserRouter([
   {

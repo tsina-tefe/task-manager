@@ -3,7 +3,7 @@ import { isTokenExpired } from "../utils/checkToken";
 import { useNavigate } from "react-router-dom";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000/api",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
 });
 
 api.interceptors.request.use(
@@ -14,7 +14,7 @@ api.interceptors.request.use(
       localStorage.removeItem("token");
       localStorage.removeItem("user");
 
-      window.location.href = "/login";
+      window.location.href = "/api/login";
       return Promise.reject("Token expired");
     }
 

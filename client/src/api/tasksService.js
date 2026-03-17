@@ -9,7 +9,7 @@ const handleError = (error) => {
 
 export const getTasks = async () => {
   try {
-    const response = await api.get("/tasks");
+    const response = await api.get("/api/tasks");
     return response.data;
   } catch (error) {
     throw handleError(error);
@@ -18,7 +18,7 @@ export const getTasks = async () => {
 
 export const addTask = async (newTask) => {
   try {
-    const response = await api.post("/tasks", newTask);
+    const response = await api.post("/api/tasks", newTask);
     return response.data;
   } catch (error) {
     throw handleError(error);
@@ -27,7 +27,7 @@ export const addTask = async (newTask) => {
 
 export const updateStatus = async (id) => {
   try {
-    const response = await api.patch(`/tasks/${id}`);
+    const response = await api.patch(`/api/tasks/${id}`);
     return response.data;
   } catch (error) {
     throw handleError(error);
@@ -36,7 +36,7 @@ export const updateStatus = async (id) => {
 
 export const deleteTask = async (id) => {
   try {
-    const response = await api.delete(`/tasks/${id}`);
+    const response = await api.delete(`/api/tasks/${id}`);
     return response.data;
   } catch (error) {
     throw handleError(error);
